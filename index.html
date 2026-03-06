@@ -1,147 +1,52 @@
 <!doctype html>
 <html lang="zh-CN">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>罗瑞 · 年轻潮流风主页</title>
-  <style>
-    :root {
-      --bg:#0b1020;
-      --panel:rgba(255,255,255,.08);
-      --ink:#f7f9ff;
-      --muted:#b8c0de;
-      --line:rgba(255,255,255,.18);
-      --g1:#7f5cff;
-      --g2:#00d4ff;
-      --g3:#41ff8a;
-      --hot:#ff5ca8;
-    }
-    *{box-sizing:border-box}
-    body{
-      margin:0;
-      font-family:"PingFang SC","Noto Sans SC",sans-serif;
-      color:var(--ink);
-      background:
-        radial-gradient(circle at 20% -10%, rgba(127,92,255,.35), transparent 45%),
-        radial-gradient(circle at 90% 10%, rgba(0,212,255,.25), transparent 35%),
-        radial-gradient(circle at 30% 90%, rgba(65,255,138,.18), transparent 40%),
-        var(--bg);
-      min-height:100vh;
-      overflow-x:hidden;
-    }
-    .noise:before{
-      content:"";position:fixed;inset:0;pointer-events:none;opacity:.08;
-      background-image:radial-gradient(circle at 1px 1px, #fff 1px, transparent 0);
-      background-size: 18px 18px;
-    }
-    .wrap{max-width:1080px;margin:0 auto;padding:40px 22px 60px;}
-    .top{
-      display:flex;justify-content:space-between;align-items:center;gap:10px;
-      margin-bottom:20px;
-    }
-    .tag{
-      font-size:12px;letter-spacing:.08em;text-transform:uppercase;
-      padding:8px 12px;border:1px solid var(--line);border-radius:999px;
-      background:rgba(255,255,255,.04);color:var(--muted)
-    }
-    .hero{
-      border:1px solid var(--line);
-      background:linear-gradient(135deg, rgba(127,92,255,.2), rgba(0,212,255,.08) 45%, rgba(255,92,168,.12));
-      border-radius:28px;
-      padding:28px;
-      box-shadow:0 20px 45px rgba(0,0,0,.28);
-      position:relative;
-      overflow:hidden;
-    }
-    .hero:after{
-      content:"";position:absolute;right:-80px;top:-80px;width:220px;height:220px;border-radius:50%;
-      background:radial-gradient(circle, rgba(255,92,168,.55), transparent 70%);
-      filter:blur(6px);
-    }
-    h1{
-      margin:0 0 8px;
-      font-size:clamp(34px,6vw,72px);
-      line-height:1.02;
-      letter-spacing:-.02em;
-    }
-    .name{background:linear-gradient(90deg,var(--g3),var(--g2),var(--g1));-webkit-background-clip:text;background-clip:text;color:transparent}
-    .sub{max-width:760px;color:#dce2ff;font-size:18px;line-height:1.8}
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>极简笔记</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="wrap">
+      <header class="top">
+        <h1>极简笔记</h1>
+        <p>快速录入 · 分类管理 · 全文搜索</p>
+      </header>
 
-    .grid{display:grid;grid-template-columns:1.1fr .9fr;gap:16px;margin-top:18px}
-    .card{
-      border:1px solid var(--line);border-radius:22px;padding:18px;background:var(--panel);
-      backdrop-filter: blur(8px);
-    }
-    .card h3{margin:0 0 10px;font-size:18px}
-    .card p,.card li{color:#d7ddf5}
-    ul{margin:0;padding-left:18px}
-    li{margin-bottom:8px}
+      <section class="card">
+        <div class="row">
+          <input id="quickInput" type="text" placeholder="输入笔记内容，回车快速保存…" />
+          <select id="categorySelect"></select>
+          <button id="addBtn">保存</button>
+        </div>
+        <div class="row row-gap">
+          <input id="newCategoryInput" type="text" placeholder="新增分类（例如：工作）" />
+          <button id="addCategoryBtn" class="ghost">添加分类</button>
+        </div>
+      </section>
 
-    .opinions{margin-top:16px}
-    .ops{display:grid;grid-template-columns:1fr 1fr;gap:10px 18px;padding-left:18px;margin:0}
+      <section class="row row-gap">
+        <input id="searchInput" class="search" type="text" placeholder="搜索笔记或分类…" />
+      </section>
 
-    .footer{margin-top:20px;color:var(--muted);font-size:12px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+      <section class="meta">
+        <span id="countText">0 条笔记</span>
+      </section>
 
-    @media (max-width:900px){
-      .grid{grid-template-columns:1fr}
-      .ops{grid-template-columns:1fr}
-    }
-  </style>
-</head>
-<body class="noise">
-  <main class="wrap">
-    <div class="top">
-      <span class="tag">Young Trendy Profile</span>
-      <span class="tag">Luo Rui · 2026</span>
-    </div>
+      <section id="notesList" class="list"></section>
+    </main>
 
-    <section class="hero">
-      <h1>你好，我是 <span class="name">罗瑞</span>。</h1>
-      <p class="sub">
-        我在 AI 时代持续学习与实操，喜欢把复杂问题拆成可执行步骤，
-        把灵感变成方法，把方法变成长期可复用的系统。
-      </p>
-    </section>
-
-    <section class="grid">
-      <article class="card">
-        <h3>我喜欢什么</h3>
-        <ul>
-          <li>把抽象概念讲到“能落地”</li>
-          <li>把单次技巧沉淀成工作流</li>
-          <li>高效+审美并存的表达方式</li>
-          <li>小步快跑，持续复盘</li>
-        </ul>
+    <template id="noteTpl">
+      <article class="note">
+        <div class="note-head">
+          <span class="tag"></span>
+          <button class="del">删除</button>
+        </div>
+        <p class="content"></p>
+        <time class="time"></time>
       </article>
+    </template>
 
-      <article class="card">
-        <h3>我是谁</h3>
-        <p>
-          我是一个目标导向、长期主义的学习者。比起“知道很多”，
-          我更关注“持续做成”。
-        </p>
-        <p>
-          关键词：AI协作、结构化思考、知识沉淀、效率升级。
-        </p>
-      </article>
-    </section>
-
-    <section class="card opinions">
-      <h3>我的一些观点</h3>
-      <ol class="ops">
-        <li>AI 不是替代思考，而是放大思考。</li>
-        <li>会提问，比会按按钮更重要。</li>
-        <li>无证据结论，不直接执行。</li>
-        <li>稳定方法比偶然灵感更值钱。</li>
-        <li>学习=理解一点、实践一点、沉淀一点。</li>
-        <li>真正效率来自可复用系统。</li>
-      </ol>
-    </section>
-
-    <footer class="footer">
-      <span>Mindset × Method × Momentum</span>
-      <span>Built for web by 小八</span>
-    </footer>
-  </main>
-</body>
+    <script src="./app.js"></script>
+  </body>
 </html>
