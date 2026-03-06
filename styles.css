@@ -1,11 +1,11 @@
 :root {
-  --bg-1: #fdeef6;
-  --bg-2: #fff8fc;
-  --pink-1: #ffd8eb;
-  --pink-2: #ffc2df;
-  --text: #2a1f27;
-  --muted: #7a6572;
-  --line: #f3dce9;
+  --bg-1: #fff4f9;
+  --bg-2: #fffbfd;
+  --pink-1: #ffe6f1;
+  --pink-2: #ffd9ea;
+  --text: #2d232a;
+  --muted: #8a7683;
+  --line: #f7e6ef;
   --white: #ffffff;
   --radius: 16px;
 }
@@ -19,15 +19,15 @@ body {
   min-height: 100vh;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Microsoft YaHei", sans-serif;
   color: var(--text);
-  background: radial-gradient(circle at 15% 10%, #ffe6f2 0%, var(--bg-1) 45%, var(--bg-2) 100%);
+  background: radial-gradient(circle at 15% 10%, #fff0f7 0%, var(--bg-1) 45%, var(--bg-2) 100%);
 }
 
 .card-soft {
-  background: rgba(255, 255, 255, 0.84);
-  border: 1px solid rgba(244, 207, 227, 0.78);
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid rgba(248, 226, 238, 0.92);
   border-radius: var(--radius);
-  box-shadow: 0 8px 24px rgba(193, 121, 160, 0.1);
-  backdrop-filter: blur(4px);
+  box-shadow: 0 8px 24px rgba(208, 159, 184, 0.08);
+  backdrop-filter: blur(3px);
 }
 
 .app-shell {
@@ -60,7 +60,7 @@ body {
   justify-content: center;
   border-radius: 12px;
   background: linear-gradient(135deg, var(--pink-1), var(--pink-2));
-  color: #8b3f66;
+  color: #9b587a;
 }
 
 .brand h1 {
@@ -81,7 +81,7 @@ body {
 
 .menu a {
   text-decoration: none;
-  color: #5a3d4f;
+  color: #6c4f5f;
   border-radius: 10px;
   padding: 10px 12px;
   font-size: 14px;
@@ -89,8 +89,8 @@ body {
 
 .menu a.active,
 .menu a:hover {
-  background: #fff1f8;
-  border: 1px solid #f4dbe9;
+  background: #fff5fa;
+  border: 1px solid #f7e2ee;
 }
 
 .side-block h3 {
@@ -106,9 +106,9 @@ body {
 
 .pill {
   font-size: 12px;
-  color: #7b4f67;
-  background: #fff2f8;
-  border: 1px solid #f3deea;
+  color: #8a6577;
+  background: #fff6fb;
+  border: 1px solid #f6e4ee;
   border-radius: 999px;
   padding: 4px 10px;
 }
@@ -168,15 +168,15 @@ button {
 
 input:focus,
 select:focus {
-  outline: 2px solid #f8dcea;
-  border-color: #efcadd;
+  outline: 2px solid #fdeaf3;
+  border-color: #f7ddeb;
 }
 
 button {
   cursor: pointer;
-  background: linear-gradient(135deg, #ffd8eb, #ffc3df);
-  border-color: #efcade;
-  color: #6b2f50;
+  background: linear-gradient(135deg, #ffe9f3, #ffddee);
+  border-color: #f7ddeb;
+  color: #7a4d63;
   font-weight: 600;
 }
 
@@ -209,17 +209,17 @@ button.ghost {
   border-radius: 999px;
   padding: 4px 10px;
   font-size: 12px;
-  background: #fff1f8;
-  border: 1px solid #f4ddea;
-  color: #7a4962;
+  background: #fff6fb;
+  border: 1px solid #f7e5ef;
+  color: #886175;
 }
 
 .del {
   height: 28px;
   border-radius: 8px;
   background: #fff;
-  color: #aa4f6f;
-  border: 1px solid #f4d6e3;
+  color: #bb6a88;
+  border: 1px solid #f7dfe9;
   font-weight: 500;
 }
 
