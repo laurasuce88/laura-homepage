@@ -16,6 +16,7 @@ const els = {
   notesList: document.getElementById("notesList"),
   noteTpl: document.getElementById("noteTpl"),
   countText: document.getElementById("countText"),
+  categoryList: document.getElementById("categoryList"),
 };
 
 function save() {
@@ -35,6 +36,20 @@ function load() {
   } catch (_) {}
 }
 
+function countByCategory(name) {
+  return state.notes.filter((n) => n.category === name).length;
+}
+
+function renderCategoryOverview() {
+  els.categoryList.innerHTML = "";
+  state.categories.forEach((c) => {
+    const pill = document.createElement("span");
+    pill.className = "pill";
+    pill.textContent = `${c} · ${countByCategory(c)}`;
+    els.categoryList.appendChild(pill);
+  });
+}
+
 function renderCategories() {
   const current = els.categorySelect.value || state.categories[0];
   els.categorySelect.innerHTML = "";
@@ -47,6 +62,7 @@ function renderCategories() {
   if (state.categories.includes(current)) {
     els.categorySelect.value = current;
   }
+  renderCategoryOverview();
 }
 
 function formatTime(ts) {
@@ -79,6 +95,7 @@ function renderNotes() {
         state.notes = state.notes.filter((n) => n.id !== note.id);
         save();
         renderNotes();
+        renderCategoryOverview();
       });
       els.notesList.appendChild(node);
     });
@@ -101,6 +118,7 @@ function addNote() {
   els.quickInput.value = "";
   save();
   renderNotes();
+  renderCategoryOverview();
   els.quickInput.focus();
 }
 

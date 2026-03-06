@@ -7,37 +7,54 @@
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
-    <main class="wrap">
-      <header class="top">
-        <h1>极简笔记</h1>
-        <p>快速录入 · 分类管理 · 全文搜索</p>
-      </header>
-
-      <section class="card">
-        <div class="row">
-          <input id="quickInput" type="text" placeholder="输入笔记内容，回车快速保存…" />
-          <select id="categorySelect"></select>
-          <button id="addBtn">保存</button>
+    <div class="app-shell">
+      <aside class="sidebar card-soft">
+        <div class="brand">
+          <div class="brand-icon">✦</div>
+          <div>
+            <h1>Note Mint</h1>
+            <p>极简笔记</p>
+          </div>
         </div>
-        <div class="row row-gap">
-          <input id="newCategoryInput" type="text" placeholder="新增分类（例如：工作）" />
-          <button id="addCategoryBtn" class="ghost">添加分类</button>
+
+        <nav class="menu">
+          <a class="active" href="javascript:void(0)">笔记流</a>
+          <a href="javascript:void(0)">分类视图</a>
+          <a href="javascript:void(0)">收藏（预留）</a>
+        </nav>
+
+        <div class="side-block">
+          <h3>分类总览</h3>
+          <div id="categoryList" class="category-list"></div>
         </div>
-      </section>
+      </aside>
 
-      <section class="row row-gap">
-        <input id="searchInput" class="search" type="text" placeholder="搜索笔记或分类…" />
-      </section>
+      <main class="main-panel">
+        <header class="topbar card-soft">
+          <input id="searchInput" class="search" type="text" placeholder="搜索笔记或分类…" />
+          <div class="top-meta">
+            <span id="countText">0 条笔记</span>
+          </div>
+        </header>
 
-      <section class="meta">
-        <span id="countText">0 条笔记</span>
-      </section>
+        <section class="composer card-soft">
+          <div class="row">
+            <input id="quickInput" type="text" placeholder="输入笔记内容，回车快速保存…" />
+            <select id="categorySelect"></select>
+            <button id="addBtn">发布</button>
+          </div>
+          <div class="row row-gap">
+            <input id="newCategoryInput" type="text" placeholder="新增分类（例如：工作）" />
+            <button id="addCategoryBtn" class="ghost">添加分类</button>
+          </div>
+        </section>
 
-      <section id="notesList" class="list"></section>
-    </main>
+        <section id="notesList" class="note-grid"></section>
+      </main>
+    </div>
 
     <template id="noteTpl">
-      <article class="note">
+      <article class="note-card card-soft">
         <div class="note-head">
           <span class="tag"></span>
           <button class="del">删除</button>
